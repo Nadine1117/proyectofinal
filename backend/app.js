@@ -1,5 +1,6 @@
 const express = require("express");
 const sequelize = require("./config/database");
+const User = require("./models/User");
 
 const app = express();
 
@@ -8,9 +9,9 @@ app.get("/", (req, res) => {
 });
 
 sequelize
-  .authenticate()
+  .sync()
   .then(() => {
-    console.log("Conexión a MySQL exitosa");
+    console.log("Base de datos sincronizada");
 
     app.listen(3000, () => {
       console.log("Servidor corriendo en puerto 3000");
