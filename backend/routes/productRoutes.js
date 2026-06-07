@@ -1,0 +1,10 @@
+const express = require("express");
+const router = express.Router();
+const { getAll, getOne, create, update, remove } = require("../controllers/productController");
+const verifyToken = require("../middleware/authMiddleware");
+router.get("/", verifyToken, getAll);
+router.get("/:id", verifyToken, getOne);
+router.post("/", verifyToken, create);
+router.put("/:id", verifyToken, update);
+router.delete("/:id", verifyToken, remove);
+module.exports = router;
