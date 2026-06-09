@@ -1,20 +1,54 @@
-function Dashboard() {
-  const token = localStorage.getItem("token");
+import { useEffect, useState } from "react";
 
-  const cerrarSesion = () => {
+function Dashboard() {
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const token = localStorage.getItem("token");
+
+        const response = await fetch("http://localhost:3000/api/products", {
+          headers: {
+            Authorization: token,
+          },
+        });
+
+        const data = await response.json();
+        setProducts(data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchProducts();
+  }, []);
+
+  const logout = () => {
     localStorage.removeItem("token");
-    alert("Sesión cerrada");
+    window.location.reload();
   };
 
   return (
     <div>
       <h1>Dashboard</h1>
 
-      <p>Bienvenido a ProyectoFinal</p>
+      <button onClick={logout}>Cerrar sesión</button>
 
-      <p>Estado: {token ? "Usuario autenticado" : "No autenticado"}</p>
+      <h2>Productos</h2>
 
-      <button onClick={cerrarSesion}>Cerrar sesión</button>
+      {products.length === 0 ? (
+        <p>No hay productos</p>
+      ) : (
+        products.map((product) => (
+          <div key={product.id}>
+            <h3>{product.titulo}</h3>
+            <p>{product.descripcion}</p>
+            <p>Precio: ${product.precio}</p>
+            <hr />
+          </div>
+        ))
+      )}
     </div>
   );
 }
