@@ -1,11 +1,10 @@
 import Login from "./pages/Login";
+import Dashboard from "./pages/Dashboard";
 
 function App() {
-  return (
-    <div>
-      <Login />
-    </div>
-  );
+  const token = localStorage.getItem("token");
+
+  return <div>{token ? <Dashboard /> : <Login />}</div>;
 }
 
 export default App;
