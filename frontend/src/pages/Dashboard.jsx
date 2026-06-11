@@ -15,7 +15,11 @@ function Dashboard() {
         });
 
         const data = await response.json();
-        setProducts(data);
+        if (data.mensaje === "Token inválido") {
+          logout();
+        } else {
+          setProducts(data);
+        }
       } catch (error) {
         console.error(error);
       }
