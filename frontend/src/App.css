@@ -1,58 +1,112 @@
-body {
+* {
   margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
   font-family: Arial, sans-serif;
   background-color: #f5efe6;
 }
 
 .navbar {
-  background-color: #23395d;
+  background-color: #1f3c5a;
   color: white;
-  padding: 20px;
+  padding: 18px 40px;
+
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
-.navbar a {
-  color: white;
-  text-decoration: none;
-  margin-left: 20px;
+.logo {
+  font-size: 28px;
+  font-weight: bold;
+  color: #6ec1a5;
 }
 
-.hero {
-  text-align: center;
-  padding: 80px 20px;
+.menu {
+  display: flex;
+  gap: 25px;
+  list-style: none;
 }
 
-.hero h1 {
-  color: #23395d;
-  font-size: 48px;
-}
-
-.hero h2 {
-  color: #5fae9a;
-}
-
-.hero button {
-  margin: 10px;
-  padding: 12px 20px;
-  border: none;
-  border-radius: 8px;
-  background-color: #5fae9a;
-  color: white;
+.menu li {
   cursor: pointer;
 }
 
+.login-btn {
+  background-color: #6ec1a5;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.hero {
+  height: 400px;
+  margin-top: 20px;
+  background-size: center center;
+  background-position: center top;
+  background-repeat: no-repeat;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.primary-btn {
+  background-color: #5fae9a;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.secondary-btn {
+  background: transparent;
+  color: white;
+  border: 2px solid white;
+  padding: 12px 24px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+/* SECCIONES */
+
 section {
-  padding: 40px;
+  padding: 50px;
 }
 
 section h2 {
   color: #23395d;
+  margin-bottom: 20px;
+}
+.hero {
+  height: 400px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
-section div div {
-  background: white;
-  padding: 20px;
-  margin: 15px 0;
-  border-radius: 12px;
+.hero-info {
+  text-align: center;
+  padding: 50px 20px;
+  background-color: #f5efe6;
+}
+
+.hero-info h1 {
+  color: #1f3c5a;
+  font-size: 42px;
+  margin-bottom: 20px;
+}
+
+.hero-info p {
+  max-width: 800px;
+  margin: 0 auto 30px auto;
+  font-size: 18px;
+  line-height: 1.6;
+  color: #333;
 }
