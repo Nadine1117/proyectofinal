@@ -10,7 +10,12 @@ function Navbar() {
         <li>Materiales</li>
       </ul>
 
-      <button className="login-btn">Iniciar sesión</button>
+      <button
+        className="login-btn"
+        onClick={() => (window.location.href = "/login")}
+      >
+        Iniciar sesión
+      </button>
     </nav>
   );
 }
