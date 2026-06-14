@@ -1,18 +1,22 @@
 import { useEffect, useState } from "react";
+import { useCart } from "../context/CartContext";
 
 function Dashboard() {
   const [products, setProducts] = useState([]);
+  const [search, setSearch] = useState("");
   const [form, setForm] = useState({
     titulo: "",
     descripcion: "",
     precio: "",
     stock: "",
     categoria: "",
+    imagen: "",
   });
   const [editId, setEditId] = useState(null);
   const token = localStorage.getItem("token");
   const payload = token ? JSON.parse(atob(token.split(".")[1])) : null;
   const isAdmin = payload?.rol === "admin";
+  const { cart, addToCart } = useCart();
 
   const fetchProducts = async () => {
     try {
@@ -53,6 +57,7 @@ function Dashboard() {
       precio: "",
       stock: "",
       categoria: "",
+      imagen: "",
     });
     setEditId(null);
     fetchProducts();
@@ -66,7 +71,9 @@ function Dashboard() {
       precio: product.precio,
       stock: product.stock,
       categoria: product.categoria,
+      imagen: product.imagen || "",
     });
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   const handleDelete = async (id) => {
@@ -86,6 +93,12 @@ function Dashboard() {
     fontSize: "14px",
   };
 
+  const filteredProducts = products.filter(
+    (p) =>
+      p.titulo.toLowerCase().includes(search.toLowerCase()) ||
+      (p.categoria || "").toLowerCase().includes(search.toLowerCase()),
+  );
+
   return (
     <div style={{ minHeight: "100vh", backgroundColor: "#f5efe6" }}>
       <div
@@ -101,25 +114,44 @@ function Dashboard() {
         <span
           style={{ fontSize: "24px", fontWeight: "bold", color: "#6ec1a5" }}
         >
-          {isAdmin ? "Panel de Administración" : "Mi cuenta"}
+          📚{" "}
+          {isAdmin ? "Panel de Administración" : "Catálogo de libros y cursos"}
         </span>
-        <button
-          onClick={logout}
-          style={{
-            backgroundColor: "transparent",
-            color: "white",
-            border: "2px solid white",
-            padding: "8px 16px",
-            borderRadius: "8px",
-            cursor: "pointer",
-          }}
-        >
-          Cerrar sesión
-        </button>
+        <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
+          {!isAdmin && (
+            <button
+              onClick={() => (window.location.href = "/carrito")}
+              style={{
+                backgroundColor: "#6ec1a5",
+                color: "white",
+                border: "none",
+                padding: "8px 16px",
+                borderRadius: "8px",
+                cursor: "pointer",
+                fontWeight: "bold",
+              }}
+            >
+              🛒 Carrito ({cart.length})
+            </button>
+          )}
+          <button
+            onClick={logout}
+            style={{
+              backgroundColor: "transparent",
+              color: "white",
+              border: "2px solid white",
+              padding: "8px 16px",
+              borderRadius: "8px",
+              cursor: "pointer",
+            }}
+          >
+            Cerrar sesión
+          </button>
+        </div>
       </div>
 
       <div
-        style={{ maxWidth: "900px", margin: "40px auto", padding: "0 20px" }}
+        style={{ maxWidth: "1100px", margin: "40px auto", padding: "0 20px" }}
       >
         {isAdmin && (
           <div
@@ -174,6 +206,12 @@ function Dashboard() {
                   setForm({ ...form, categoria: e.target.value })
                 }
               />
+              <input
+                style={inputStyle}
+                placeholder="URL de imagen (portada)"
+                value={form.imagen}
+                onChange={(e) => setForm({ ...form, imagen: e.target.value })}
+              />
               <div style={{ display: "flex", gap: "10px" }}>
                 <button
                   type="submit"
@@ -199,6 +237,7 @@ function Dashboard() {
                         precio: "",
                         stock: "",
                         categoria: "",
+                        imagen: "",
                       });
                     }}
                     style={{
@@ -218,68 +257,180 @@ function Dashboard() {
           </div>
         )}
 
-        <h2 style={{ color: "#1f3c5a", marginBottom: "20px" }}>Productos</h2>
-        {products.length === 0 ? (
+        <div style={{ marginBottom: "30px" }}>
+          <input
+            type="text"
+            placeholder="Buscar por título o categoría..."
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            style={{
+              width: "100%",
+              padding: "14px 20px",
+              border: "1px solid #ccc",
+              borderRadius: "30px",
+              fontSize: "16px",
+              boxShadow: "0 2px 8px rgba(0,0,0,0.05)",
+            }}
+          />
+        </div>
+
+        <h2 style={{ color: "#1f3c5a", marginBottom: "20px" }}>
+          {filteredProducts.length}{" "}
+          {filteredProducts.length === 1 ? "resultado" : "resultados"}
+        </h2>
+
+        {filteredProducts.length === 0 ? (
           <p>No hay productos</p>
         ) : (
-          products.map((product) => (
-            <div
-              key={product.id}
-              style={{
-                backgroundColor: "white",
-                borderRadius: "12px",
-                padding: "20px",
-                marginBottom: "15px",
-                boxShadow: "0 2px 8px rgba(0,0,0,0.08)",
-              }}
-            >
-              <h3 style={{ color: "#1f3c5a", marginBottom: "8px" }}>
-                {product.titulo}
-              </h3>
-              <p style={{ color: "#555", marginBottom: "8px" }}>
-                {product.descripcion}
-              </p>
-              <p
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fill, minmax(220px, 1fr))",
+              gap: "20px",
+            }}
+          >
+            {filteredProducts.map((product) => (
+              <div
+                key={product.id}
                 style={{
-                  color: "#888",
-                  fontSize: "14px",
-                  marginBottom: "12px",
+                  backgroundColor: "white",
+                  borderRadius: "12px",
+                  padding: "20px",
+                  boxShadow: "0 2px 8px rgba(0,0,0,0.08)",
+                  display: "flex",
+                  flexDirection: "column",
                 }}
               >
-                ${product.precio} | Stock: {product.stock} | {product.categoria}
-              </p>
-              {isAdmin && (
-                <div style={{ display: "flex", gap: "10px" }}>
-                  <button
-                    onClick={() => handleEdit(product)}
-                    style={{
-                      backgroundColor: "#23395d",
-                      color: "white",
-                      border: "none",
-                      padding: "8px 16px",
-                      borderRadius: "6px",
-                      cursor: "pointer",
-                    }}
-                  >
-                    Editar
-                  </button>
-                  <button
-                    onClick={() => handleDelete(product.id)}
-                    style={{
-                      backgroundColor: "#e74c3c",
-                      color: "white",
-                      border: "none",
-                      padding: "8px 16px",
-                      borderRadius: "6px",
-                      cursor: "pointer",
-                    }}
-                  >
-                    Eliminar
-                  </button>
+                <div
+                  style={{
+                    backgroundColor: "#1f3c5a",
+                    borderRadius: "8px",
+                    height: "140px",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    marginBottom: "14px",
+                    overflow: "hidden",
+                  }}
+                >
+                  {product.imagen ? (
+                    <img
+                      src={product.imagen}
+                      alt={product.titulo}
+                      style={{
+                        width: "100%",
+                        height: "100%",
+                        objectFit: "cover",
+                      }}
+                    />
+                  ) : (
+                    <span style={{ fontSize: "48px" }}>📖</span>
+                  )}
                 </div>
-              )}
-            </div>
-          ))
+                <span
+                  style={{
+                    display: "inline-block",
+                    backgroundColor: "#6ec1a5",
+                    color: "white",
+                    fontSize: "12px",
+                    padding: "3px 10px",
+                    borderRadius: "12px",
+                    marginBottom: "8px",
+                    alignSelf: "flex-start",
+                  }}
+                >
+                  {product.categoria || "General"}
+                </span>
+                <h3
+                  style={{
+                    color: "#1f3c5a",
+                    marginBottom: "6px",
+                    fontSize: "18px",
+                  }}
+                >
+                  {product.titulo}
+                </h3>
+                <p
+                  style={{
+                    color: "#666",
+                    fontSize: "14px",
+                    marginBottom: "10px",
+                    flexGrow: 1,
+                  }}
+                >
+                  {product.descripcion}
+                </p>
+                <p
+                  style={{
+                    color: "#1f3c5a",
+                    fontWeight: "bold",
+                    fontSize: "18px",
+                    marginBottom: "12px",
+                  }}
+                >
+                  {product.precio === 0 ? "Gratis" : `$${product.precio}`}
+                </p>
+                {!isAdmin && (
+                  <button
+                    onClick={() => addToCart(product)}
+                    disabled={cart.find((item) => item.id === product.id)}
+                    style={{
+                      backgroundColor: cart.find(
+                        (item) => item.id === product.id,
+                      )
+                        ? "#ccc"
+                        : "#6ec1a5",
+                      color: "white",
+                      border: "none",
+                      padding: "10px",
+                      borderRadius: "8px",
+                      cursor: cart.find((item) => item.id === product.id)
+                        ? "default"
+                        : "pointer",
+                      marginBottom: "10px",
+                      fontWeight: "bold",
+                    }}
+                  >
+                    {cart.find((item) => item.id === product.id)
+                      ? "En el carrito"
+                      : "Agregar al carrito"}
+                  </button>
+                )}
+                {isAdmin && (
+                  <div style={{ display: "flex", gap: "10px" }}>
+                    <button
+                      onClick={() => handleEdit(product)}
+                      style={{
+                        flex: 1,
+                        backgroundColor: "#23395d",
+                        color: "white",
+                        border: "none",
+                        padding: "8px 12px",
+                        borderRadius: "6px",
+                        cursor: "pointer",
+                      }}
+                    >
+                      Editar
+                    </button>
+                    <button
+                      onClick={() => handleDelete(product.id)}
+                      style={{
+                        flex: 1,
+                        backgroundColor: "#e74c3c",
+                        color: "white",
+                        border: "none",
+                        padding: "8px 12px",
+                        borderRadius: "6px",
+                        cursor: "pointer",
+                      }}
+                    >
+                      Eliminar
+                    </button>
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
         )}
       </div>
     </div>
