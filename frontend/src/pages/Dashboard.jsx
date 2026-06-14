@@ -360,16 +360,6 @@ function Dashboard() {
                 >
                   {product.descripcion}
                 </p>
-                <p
-                  style={{
-                    color: "#1f3c5a",
-                    fontWeight: "bold",
-                    fontSize: "18px",
-                    marginBottom: "12px",
-                  }}
-                >
-                  {product.precio === 0 ? "Gratis" : `$${product.precio}`}
-                </p>
                 {!isAdmin && (
                   <button
                     onClick={() => addToCart(product)}

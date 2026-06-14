@@ -6,6 +6,10 @@ import AdminLogin from "./pages/AdminLogin";
 import Dashboard from "./pages/Dashboard";
 import Cart from "./pages/Cart";
 import Terms from "./pages/Terms";
+import Explore from "./pages/Explore";
+import Pricing from "./pages/Pricing";
+import About from "./pages/About";
+import Faq from "./pages/Faq";
 import "./app.css";
 
 function App() {
@@ -27,6 +31,10 @@ function App() {
           element={token ? <Cart /> : <Navigate to="/login" />}
         />
         <Route path="/terminos" element={<Terms />} />
+        <Route path="/explorar" element={<Explore />} />
+        <Route path="/precios" element={<Pricing />} />
+        <Route path="/sobre-nosotros" element={<About />} />
+        <Route path="/preguntas-frecuentes" element={<Faq />} />
       </Routes>
     </BrowserRouter>
   );
