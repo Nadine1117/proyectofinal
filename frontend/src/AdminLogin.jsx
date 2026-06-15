@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function Login() {
+function AdminLogin() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -16,6 +16,11 @@ function Login() {
       const data = await response.json();
       if (!data.token) {
         setError("Email o contraseña incorrectos");
+        return;
+      }
+      const payload = JSON.parse(atob(data.token.split(".")[1]));
+      if (payload.rol !== "admin") {
+        setError("No tenés permisos de administrador");
         return;
       }
       localStorage.setItem("token", data.token);
@@ -50,7 +55,7 @@ function Login() {
             Educamarket
           </h1>
           <p style={{ color: "#888", marginTop: "8px" }}>
-            Iniciá sesión en tu cuenta
+            Panel de administración
           </p>
         </div>
         <form onSubmit={handleSubmit}>
@@ -111,7 +116,7 @@ function Login() {
             type="submit"
             style={{
               width: "100%",
-              backgroundColor: "#6ec1a5",
+              backgroundColor: "#1f3c5a",
               color: "white",
               border: "none",
               padding: "14px",
@@ -121,32 +126,12 @@ function Login() {
               fontWeight: "bold",
             }}
           >
-            Ingresar
+            Ingresar como admin
           </button>
-          <p
-            style={{
-              textAlign: "center",
-              marginTop: "16px",
-              color: "#888",
-              fontSize: "14px",
-            }}
-          >
-            ¿No tenés cuenta?{" "}
-            <span
-              onClick={() => (window.location.href = "/register")}
-              style={{
-                color: "#6ec1a5",
-                cursor: "pointer",
-                fontWeight: "bold",
-              }}
-            >
-              Registrate
-            </span>
-          </p>
         </form>
       </div>
     </div>
   );
 }
 
-export default Login;
+export default AdminLogin;

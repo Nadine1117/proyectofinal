@@ -7,6 +7,7 @@ const Product = sequelize.define("Product", {
   precio: { type: DataTypes.FLOAT, allowNull: false },
   stock: { type: DataTypes.INTEGER, allowNull: false },
   categoria: { type: DataTypes.STRING },
+  imagen: { type: DataTypes.STRING },
 });
 
 module.exports = Product;
