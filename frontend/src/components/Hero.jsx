@@ -1,5 +1,5 @@
 import banner from "../assets/banner.jpg";
-
+import InfoCarousel from "./InfoCarousel";
 function Hero() {
   return (
     <>
@@ -10,9 +10,9 @@ function Hero() {
 
       <section className="hero-info">
         <h1>
-          La educación transforma vidas.
+          ¿Qué encontrarás en Educamarket?
           <br />
-          Hagamos que llegue a todos.
+          Miles de recursos para tu formación educativa.
         </h1>
         <p>
           En Educamarket conectamos personas con libros, cursos y recursos
@@ -65,6 +65,7 @@ function Hero() {
           ].map((item, i) => (
             <div
               key={i}
+              className="feature-card"
               style={{
                 backgroundColor: "#f5efe6",
                 borderRadius: "12px",
@@ -88,6 +89,7 @@ function Hero() {
             </div>
           ))}
         </div>
+        <InfoCarousel />
       </section>
     </>
   );

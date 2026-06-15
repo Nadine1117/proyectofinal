@@ -45,15 +45,13 @@ body {
 }
 
 .hero {
-  height: 400px;
-  margin-top: 20px;
-  background-size: center center;
+  height: 650px;
+
+  background-size: contain;
   background-position: center top;
   background-repeat: no-repeat;
 
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  background-color: #f5efe6;
 }
 
 .primary-btn {
@@ -74,27 +72,15 @@ body {
   cursor: pointer;
 }
 
-/* SECCIONES */
-
-section {
-  padding: 50px;
-}
-
 section h2 {
   color: #23395d;
   margin-bottom: 20px;
-}
-.hero {
-  height: 400px;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
 }
 
 .hero-info {
   text-align: center;
   padding: 50px 20px;
-  background-color: white;
+  background-color: #f5efe6;
 }
 
 .hero-info h1 {
@@ -109,4 +95,63 @@ section h2 {
   font-size: 18px;
   line-height: 1.6;
   color: #333;
+}
+
+.carousel {
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+.carousel-card {
+  width: 800px;
+  background: white;
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  text-align: center;
+  transition: all 0.5s ease;
+}
+
+.carousel-icon {
+  font-size: 70px;
+  margin-bottom: 15px;
+}
+
+.carousel-card h2 {
+  color: #1f3c5a;
+  margin-bottom: 15px;
+  font-size: 28px;
+}
+
+.carousel-card p {
+  color: #555;
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+.carousel-dots {
+  margin-top: 20px;
+}
+
+.dot {
+  height: 12px;
+  width: 12px;
+  margin: 0 5px;
+  display: inline-block;
+  border-radius: 50%;
+  background-color: #ccc;
+}
+
+.dot.active {
+  background-color: #6ec1a5;
+}
+
+.feature-card {
+  transition: all 0.3s ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
 }
