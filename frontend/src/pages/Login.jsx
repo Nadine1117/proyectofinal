@@ -1,9 +1,11 @@
 import { useState } from "react";
+import Loader from "../components/Loader";
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -19,11 +21,16 @@ function Login() {
         return;
       }
       localStorage.setItem("token", data.token);
-      window.location.href = "/libros";
+      setLoading(true);
+      setTimeout(() => {
+        window.location.href = "/libros";
+      }, 1000);
     } catch (error) {
       console.error(error);
     }
   };
+
+  if (loading) return <Loader />;
 
   return (
     <div

@@ -3,38 +3,31 @@
   padding: 0;
   box-sizing: border-box;
 }
-
 body {
   font-family: Arial, sans-serif;
   background-color: #f5efe6;
 }
-
 .navbar {
   background-color: #1f3c5a;
   color: white;
   padding: 18px 40px;
-
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-
 .logo {
   font-size: 28px;
   font-weight: bold;
   color: #6ec1a5;
 }
-
 .menu {
   display: flex;
   gap: 25px;
   list-style: none;
 }
-
 .menu li {
   cursor: pointer;
 }
-
 .login-btn {
   background-color: #6ec1a5;
   color: white;
@@ -43,19 +36,17 @@ body {
   border-radius: 8px;
   cursor: pointer;
 }
-
 .hero {
-  height: 400px;
-  margin-top: 20px;
-  background-size: center center;
-  background-position: center top;
+  width: 100%;
+  aspect-ratio: 1472 / 753;
+  margin: 0;
+  background-size: cover;
+  background-position: center center;
   background-repeat: no-repeat;
-
   display: flex;
   justify-content: center;
   align-items: center;
 }
-
 .primary-btn {
   background-color: #5fae9a;
   color: white;
@@ -64,7 +55,6 @@ body {
   border-radius: 8px;
   cursor: pointer;
 }
-
 .secondary-btn {
   background: #5fae9a;
   color: white;
@@ -73,36 +63,24 @@ body {
   border-radius: 8px;
   cursor: pointer;
 }
-
 /* SECCIONES */
-
 section {
   padding: 50px;
 }
-
 section h2 {
   color: #23395d;
   margin-bottom: 20px;
 }
-.hero {
-  height: 400px;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-}
-
 .hero-info {
   text-align: center;
   padding: 50px 20px;
   background-color: white;
 }
-
 .hero-info h1 {
   color: #1f3c5a;
   font-size: 42px;
   margin-bottom: 20px;
 }
-
 .hero-info p {
   max-width: 800px;
   margin: 0 auto 30px auto;
