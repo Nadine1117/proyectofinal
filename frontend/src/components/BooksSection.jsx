@@ -1,12 +1,32 @@
+import { useEffect, useState } from "react";
+
 function BooksSection() {
+  const [books, setBooks] = useState([]);
+
+  useEffect(() => {
+    fetch("https://openlibrary.org/search.json?q=educacion")
+      .then((response) => response.json())
+      .then((data) => {
+        setBooks(data.docs.slice(0, 6));
+      })
+      .catch((error) => console.error(error));
+  }, []);
+
   return (
     <section
       id="libros"
       style={{ padding: "60px 40px", backgroundColor: "#f5efe6" }}
     >
-      <h2 style={{ color: "#23395d", marginBottom: "30px", fontSize: "28px" }}>
+      <h2
+        style={{
+          color: "#23395d",
+          marginBottom: "30px",
+          fontSize: "28px",
+        }}
+      >
         📚 Libros recomendados
       </h2>
+
       <div
         style={{
           display: "grid",
@@ -14,23 +34,7 @@ function BooksSection() {
           gap: "20px",
         }}
       >
-        {[
-          {
-            titulo: "Ética para Amador",
-            autor: "Fernando Savater",
-            desc: "Una guía de ética para jóvenes y adultos.",
-          },
-          {
-            titulo: "El Mundo de Sofía",
-            autor: "Jostein Gaarder",
-            desc: "Un viaje por la historia de la filosofía.",
-          },
-          {
-            titulo: "Educación y Democracia",
-            autor: "John Dewey",
-            desc: "La educación como base de la sociedad.",
-          },
-        ].map((libro, i) => (
+        {books.map((book, i) => (
           <div
             key={i}
             style={{
@@ -40,10 +44,41 @@ function BooksSection() {
               boxShadow: "0 2px 8px rgba(0,0,0,0.08)",
             }}
           >
-            <div style={{ fontSize: "40px", marginBottom: "12px" }}>📖</div>
-            <h3 style={{ color: "#1f3c5a", marginBottom: "6px" }}>
-              {libro.titulo}
+            {book.cover_i ? (
+              <img
+                src={`https://covers.openlibrary.org/b/id/${book.cover_i}-M.jpg`}
+                alt={book.title}
+                style={{
+                  width: "100%",
+                  height: "250px",
+                  objectFit: "cover",
+                  borderRadius: "8px",
+                  marginBottom: "12px",
+                }}
+              />
+            ) : (
+              <div
+                style={{
+                  height: "250px",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  fontSize: "60px",
+                }}
+              >
+                📖
+              </div>
+            )}
+
+            <h3
+              style={{
+                color: "#1f3c5a",
+                marginBottom: "6px",
+              }}
+            >
+              {book.title}
             </h3>
+
             <p
               style={{
                 color: "#6ec1a5",
@@ -51,9 +86,8 @@ function BooksSection() {
                 marginBottom: "8px",
               }}
             >
-              {libro.autor}
+              {book.author_name ? book.author_name[0] : "Autor desconocido"}
             </p>
-            <p style={{ color: "#666", fontSize: "14px" }}>{libro.desc}</p>
           </div>
         ))}
       </div>
