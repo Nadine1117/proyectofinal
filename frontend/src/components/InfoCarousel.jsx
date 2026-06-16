@@ -1,24 +1,27 @@
 import { useEffect, useState } from "react";
-
+import libros from "../assets/libros.jpg";
+import estudiantes from "../assets/estudiantes.jpg";
+import biblioteca from "../assets/biblioteca.jpg";
+import mundo from "../assets/mundo.jpg";
 function InfoCarousel() {
   const slides = [
     {
-      icono: "📚",
+      imagen: libros,
       titulo: "Más de 200 libros educativos",
       texto: "Accedé a materiales de filosofía, historia, programación y más.",
     },
     {
-      icono: "🎓",
+      imagen: estudiantes,
       titulo: "Cursos para todos",
       texto: "Aprendé nuevas habilidades desde cualquier lugar.",
     },
     {
-      icono: "💻",
+      imagen: biblioteca,
       titulo: "Recursos digitales",
       texto: "Contenido actualizado para estudiantes y docentes.",
     },
     {
-      icono: "🌎",
+      imagen: mundo,
       titulo: "Acceso desde cualquier lugar",
       texto: "Disponible las 24 horas desde cualquier dispositivo.",
     },
@@ -37,7 +40,11 @@ function InfoCarousel() {
   return (
     <div className="carousel">
       <div className="carousel-card">
-        <div className="carousel-icon">{slides[actual].icono}</div>
+        <img
+          src={slides[actual].imagen}
+          alt={slides[actual].titulo}
+          className="carousel-image"
+        />
 
         <h2>{slides[actual].titulo}</h2>
 
