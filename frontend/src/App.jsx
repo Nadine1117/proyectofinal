@@ -10,7 +10,8 @@ import Explore from "./pages/Explore";
 import Pricing from "./pages/Pricing";
 import About from "./pages/About";
 import Faq from "./pages/Faq";
-import "./app.css";
+import "./App.css";
+import Libros from "./pages/Libros";
 
 function App() {
   const token = localStorage.getItem("token");
@@ -24,7 +25,7 @@ function App() {
         <Route path="/admin/login" element={<AdminLogin />} />
         <Route
           path="/libros"
-          element={token ? <Dashboard /> : <Navigate to="/login" />}
+          element={token ? <Libros /> : <Navigate to="/login" />}
         />
         <Route
           path="/carrito"

@@ -37,10 +37,9 @@ body {
   cursor: pointer;
 }
 .hero {
-  height: 400px;
-  margin-top: 20px;
-  background-size: center center;
-  background-position: center top;
+  height: 700px;
+  background-size: cover;
+  background-position: top;
   background-repeat: no-repeat;
 
   display: flex;
@@ -74,12 +73,6 @@ section h2 {
   color: #23395d;
   margin-bottom: 20px;
 }
-.hero {
-  height: 400px;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-}
 
 .hero-info {
   text-align: center;
@@ -102,15 +95,22 @@ section h2 {
 .carousel {
   display: flex;
   justify-content: center;
-  margin-top: 50px;
-}
-
-.carousel-card {
-  width: 800px;
-  background: white;
+  margin-top: 60px;
   padding: 40px;
-  border-radius: 20px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  background: #1f3c5a;
+  border-radius: 25px;
+}
+.carousel-card {
+  width: 950px;
+  min-height: 420px;
+
+  background: linear-gradient(135deg, #ffffff, #f8fafc);
+
+  padding: 50px;
+  border-radius: 24px;
+
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+
   text-align: center;
   transition: all 0.5s ease;
 }
@@ -123,13 +123,15 @@ section h2 {
 .carousel-card h2 {
   color: #1f3c5a;
   margin-bottom: 15px;
-  font-size: 28px;
+  font-size: 34px;
 }
 
 .carousel-card p {
   color: #555;
-  font-size: 18px;
-  line-height: 1.6;
+  font-size: 20px;
+  line-height: 1.7;
+  max-width: 700px;
+  margin: 0 auto;
 }
 
 .carousel-dots {
@@ -156,4 +158,16 @@ section h2 {
 .feature-card:hover {
   transform: translateY(-8px);
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+.carousel-image {
+  width: 500px;
+  height: 280px;
+
+  object-fit: cover;
+
+  border-radius: 18px;
+
+  margin-bottom: 25px;
+
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
 }
