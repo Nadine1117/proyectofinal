@@ -10,7 +10,7 @@ import Explore from "./pages/Explore";
 import Pricing from "./pages/Pricing";
 import About from "./pages/About";
 import Faq from "./pages/Faq";
-import "./app.css";
+import "./App.css";
 import Libros from "./pages/Libros";
 
 function App() {

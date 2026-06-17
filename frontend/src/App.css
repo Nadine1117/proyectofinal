@@ -37,10 +37,9 @@ body {
   cursor: pointer;
 }
 .hero {
-  height: 750px;
-
-  background-size: contain;
-  background-position: center top;
+  height: 700px;
+  background-size: cover;
+  background-position: top;
   background-repeat: no-repeat;
 
   display: flex;
@@ -73,12 +72,6 @@ section {
 section h2 {
   color: #23395d;
   margin-bottom: 20px;
-}
-.hero {
-  height: 400px;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
 }
 
 .hero-info {
