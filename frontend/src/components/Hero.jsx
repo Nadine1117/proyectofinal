@@ -5,7 +5,7 @@ function Hero() {
   return (
     <>
       <div
-        style={{ width: "100%", backgroundColor: "#f5efe6", padding: "20px 0" }}
+        style={{ width: "100%", backgroundColor: "#123B73", padding: "20px 0" }}
       >
         <img
           src={banner}
@@ -41,8 +41,18 @@ function Hero() {
             marginBottom: "50px",
           }}
         >
-          <button className="primary-btn">Explorar Libros</button>
-          <button className="secondary-btn">Ver Cursos</button>
+          <button
+            className="primary-btn"
+            onClick={() => (window.location.href = "/libros")}
+          >
+            Explorar Libros
+          </button>
+          <button
+            className="secondary-btn"
+            onClick={() => (window.location.href = "/libros")}
+          >
+            Ver Cursos
+          </button>
         </div>
 
         <div

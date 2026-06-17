@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import "./Libros.css";
 import Navbar from "../components/Navbar";
+import { useCart } from "../context/CartContext";
 
 function Libros() {
   const [books, setBooks] = useState([]);
@@ -8,6 +9,7 @@ function Libros() {
   const [loading, setLoading] = useState(false);
   const [search, setSearch] = useState("");
   const [selectedBook, setSelectedBook] = useState(null);
+  const { cart, addToCart } = useCart();
 
   const fetchBooks = async () => {
     try {
@@ -92,29 +94,50 @@ function Libros() {
         )}
 
         <div className="books-grid">
-          {filteredBooks.map((book, index) => (
-            <div key={index} className="book-card">
-              <img
-                src={`https://covers.openlibrary.org/b/id/${book.cover_i}-M.jpg`}
-                alt={book.title}
-              />
+          {filteredBooks.map((book, index) => {
+            const bookId = book.key || index;
+            const inCart = cart.find((item) => item.id === bookId);
+            return (
+              <div key={index} className="book-card">
+                <img
+                  src={`https://covers.openlibrary.org/b/id/${book.cover_i}-M.jpg`}
+                  alt={book.title}
+                />
 
-              <h3>{book.title}</h3>
+                <h3>{book.title}</h3>
 
-              <p>
-                {book.author_name ? book.author_name[0] : "Autor desconocido"}
-              </p>
+                <p>
+                  {book.author_name ? book.author_name[0] : "Autor desconocido"}
+                </p>
 
-              <p>Año: {book.first_publish_year || "No disponible"}</p>
+                <p>Año: {book.first_publish_year || "No disponible"}</p>
 
-              <button
-                className="view-btn"
-                onClick={() => setSelectedBook(book)}
-              >
-                Ver libro
-              </button>
-            </div>
-          ))}
+                <button
+                  className="view-btn"
+                  onClick={() => setSelectedBook(book)}
+                >
+                  Ver libro
+                </button>
+                <button
+                  className="view-btn"
+                  onClick={() =>
+                    addToCart({
+                      id: bookId,
+                      titulo: book.title,
+                      categoria: "Libro",
+                    })
+                  }
+                  disabled={inCart}
+                  style={{
+                    marginTop: "6px",
+                    backgroundColor: inCart ? "#ccc" : "#6ec1a5",
+                  }}
+                >
+                  {inCart ? "En el carrito" : "Agregar al carrito"}
+                </button>
+              </div>
+            );
+          })}
         </div>
 
         {loading && <p>Cargando más libros...</p>}

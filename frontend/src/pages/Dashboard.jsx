@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useCart } from "../context/CartContext";
+import Navbar from "../components/Navbar";
 
 function Dashboard() {
   const [products, setProducts] = useState([]);
@@ -101,6 +102,8 @@ function Dashboard() {
 
   return (
     <div style={{ minHeight: "100vh", backgroundColor: "#f5efe6" }}>
+      <Navbar />
+
       <div
         style={{
           backgroundColor: "#1f3c5a",
@@ -134,19 +137,6 @@ function Dashboard() {
               🛒 Carrito ({cart.length})
             </button>
           )}
-          <button
-            onClick={logout}
-            style={{
-              backgroundColor: "transparent",
-              color: "white",
-              border: "2px solid white",
-              padding: "8px 16px",
-              borderRadius: "8px",
-              cursor: "pointer",
-            }}
-          >
-            Cerrar sesión
-          </button>
         </div>
       </div>
 
