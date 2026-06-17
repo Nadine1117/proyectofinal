@@ -1,12 +1,25 @@
 import banner from "../assets/banner.jpg";
 import InfoCarousel from "./InfoCarousel";
+
 function Hero() {
   return (
     <>
-      <section
-        className="hero"
-        style={{ backgroundImage: `url(${banner})` }}
-      ></section>
+      <div
+        style={{ width: "100%", backgroundColor: "#f5efe6", padding: "20px 0" }}
+      >
+        <img
+          src={banner}
+          alt="Educamarket banner"
+          style={{
+            display: "block",
+            maxWidth: "1200px",
+            width: "100%",
+            height: "auto",
+            margin: "0 auto",
+            borderRadius: "12px",
+          }}
+        />
+      </div>
 
       <section className="hero-info">
         <h1>
