@@ -1,7 +1,7 @@
 import logo from "../assets/logo-educamarket.png";
+import cursorImg from "../assets/cursor.png";
 
-const bookCursor =
-  "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='24' height='24'%3E%3Ctext y='20' font-size='20'%3E%F0%9F%93%96%3C/text%3E%3C/svg%3E\") 12 12, pointer";
+const bookCursor = `url(${cursorImg}) 0 0, pointer`;
 
 function Navbar() {
   const token = localStorage.getItem("token");
