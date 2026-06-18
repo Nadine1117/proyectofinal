@@ -72,6 +72,7 @@ function Libros() {
         />
 
         {selectedBook && (
+          <div className="modal-overlay">
           <div className="book-modal">
             <h2>{selectedBook.title}</h2>
 

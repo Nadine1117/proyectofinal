@@ -12,6 +12,7 @@ import About from "./pages/About";
 import Faq from "./pages/Faq";
 import "./App.css";
 import Libros from "./pages/Libros";
+import Cursos from "./pages/Cursos";
 
 function App() {
   const token = localStorage.getItem("token");
@@ -36,6 +37,7 @@ function App() {
         <Route path="/precios" element={<Pricing />} />
         <Route path="/sobre-nosotros" element={<About />} />
         <Route path="/preguntas-frecuentes" element={<Faq />} />
+        <Route path="/cursos" element={<Cursos />} />
       </Routes>
     </BrowserRouter>
   );

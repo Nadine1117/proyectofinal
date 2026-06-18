@@ -1,6 +1,9 @@
 import banner from "../assets/banner.jpg";
 import InfoCarousel from "./InfoCarousel";
+
 function Hero() {
+  const token = localStorage.getItem("token");
+
   return (
     <>
       <section
@@ -14,11 +17,13 @@ function Hero() {
           <br />
           Miles de recursos para tu formación educativa.
         </h1>
+
         <p>
           En Educamarket conectamos personas con libros, cursos y recursos
           educativos. Si tenés correo académico de una institución pública,
           accedés completamente gratis.
         </p>
+
         <div
           className="hero-buttons"
           style={{
@@ -28,8 +33,23 @@ function Hero() {
             marginBottom: "50px",
           }}
         >
-          <button className="primary-btn">Explorar Libros</button>
-          <button className="secondary-btn">Ver Cursos</button>
+          <button
+            className="primary-btn"
+            onClick={() =>
+              (window.location.href = token ? "/libros" : "/login")
+            }
+          >
+            Explorar Libros
+          </button>
+
+          <button
+            className="secondary-btn"
+            onClick={() =>
+              (window.location.href = token ? "/cursos" : "/login")
+            }
+          >
+            Ver Cursos
+          </button>
         </div>
 
         <div
@@ -76,6 +96,7 @@ function Hero() {
               <div style={{ fontSize: "32px", marginBottom: "10px" }}>
                 {item.emoji}
               </div>
+
               <h3
                 style={{
                   color: "#1f3c5a",
@@ -85,10 +106,12 @@ function Hero() {
               >
                 {item.titulo}
               </h3>
+
               <p style={{ color: "#666", fontSize: "13px" }}>{item.desc}</p>
             </div>
           ))}
         </div>
+
         <InfoCarousel />
       </section>
     </>
