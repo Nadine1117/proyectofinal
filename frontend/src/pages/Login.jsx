@@ -24,7 +24,7 @@ function Login() {
       setLoading(true);
       setTimeout(() => {
         window.location.href = "/libros";
-      }, 1000);
+      }, 2000);
     } catch (error) {
       console.error(error);
     }

@@ -10,23 +10,38 @@ import Explore from "./pages/Explore";
 import Pricing from "./pages/Pricing";
 import About from "./pages/About";
 import Faq from "./pages/Faq";
-import "./App.css";
 import Libros from "./pages/Libros";
+import "./App.css";
 import Cursos from "./pages/Cursos";
 
 function App() {
   const token = localStorage.getItem("token");
+  const payload = token ? JSON.parse(atob(token.split(".")[1])) : null;
+  const isAdmin = payload?.rol === "admin";
 
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/admin/login" element={<AdminLogin />} />
+        <Route
+          path="/login"
+          element={token ? <Navigate to="/libros" /> : <Login />}
+        />
+        <Route
+          path="/register"
+          element={token ? <Navigate to="/libros" /> : <Register />}
+        />
+        <Route
+          path="/admin/login"
+          element={token ? <Navigate to="/libros" /> : <AdminLogin />}
+        />
         <Route
           path="/libros"
           element={token ? <Libros /> : <Navigate to="/login" />}
+        />
+        <Route
+          path="/admin/productos"
+          element={isAdmin ? <Dashboard /> : <Navigate to="/login" />}
         />
         <Route
           path="/carrito"
