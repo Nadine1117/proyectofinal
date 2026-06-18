@@ -73,22 +73,35 @@ function Libros() {
 
         {selectedBook && (
           <div className="modal-overlay">
-          <div className="book-modal">
-            <h2>{selectedBook.title}</h2>
+            <div className="book-modal">
+              {selectedBook.cover_i && (
+                <img
+                  src={
+                    "https://covers.openlibrary.org/b/id/${selectedBook.cover_i}-L.jpg"
+                  }
+                  alt={selectedBook.title}
+                  className="modal-book-image"
+                />
+              )}
+              <h2>{selectedBook.title}</h2>
 
-            <p>
-              <strong>Autor:</strong>{" "}
-              {selectedBook.author_name?.[0] || "Desconocido"}
-            </p>
+              <p>
+                <strong>Autor:</strong>{" "}
+                {selectedBook.author_name?.[0] || "Desconocido"}
+              </p>
 
-            <p>
-              <strong>Año:</strong>{" "}
-              {selectedBook.first_publish_year || "No disponible"}
-            </p>
+              <p>
+                <strong>Año:</strong>{" "}
+                {selectedBook.first_publish_year || "No disponible"}
+              </p>
 
-            <button className="view-btn" onClick={() => setSelectedBook(null)}>
-              Cerrar
-            </button>
+              <button
+                className="view-btn"
+                onClick={() => setSelectedBook(null)}
+              >
+                Cerrar
+              </button>
+            </div>
           </div>
         )}
 
