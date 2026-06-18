@@ -59,10 +59,35 @@ function Loader() {
         El conocimiento a un clic de distancia...
       </p>
 
+      <div
+        style={{
+          width: "220px",
+          height: "8px",
+          backgroundColor: "rgba(255,255,255,0.3)",
+          borderRadius: "8px",
+          marginTop: "20px",
+          overflow: "hidden",
+          zIndex: 1,
+        }}
+      >
+        <div
+          style={{
+            height: "100%",
+            backgroundColor: "#58C786",
+            borderRadius: "8px",
+            animation: "loadBar 2.5s linear forwards",
+          }}
+        />
+      </div>
+
       <style>{`
         @keyframes bounce {
           0%, 100% { transform: translateY(0); }
           50% { transform: translateY(-15px); }
+        }
+        @keyframes loadBar {
+          from { width: 0%; }
+          to { width: 100%; }
         }
       `}</style>
     </div>
