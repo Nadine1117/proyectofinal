@@ -1,3 +1,5 @@
+import logo from "../assets/logo-educamarket.png";
+
 const bookCursor =
   "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='24' height='24'%3E%3Ctext y='20' font-size='20'%3E%F0%9F%93%96%3C/text%3E%3C/svg%3E\") 12 12, pointer";
 
@@ -14,9 +16,9 @@ function Navbar() {
       <div
         className="logo"
         onClick={() => (window.location.href = "/")}
-        style={{ cursor: bookCursor }}
+        style={{ cursor: bookCursor, display: "flex", alignItems: "center" }}
       >
-        📚 Educamarket
+        <img src={logo} alt="Educamarket" style={{ height: "55px" }} />
       </div>
       <ul className="menu">
         <li

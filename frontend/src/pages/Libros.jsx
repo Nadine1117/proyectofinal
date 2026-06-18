@@ -65,13 +65,37 @@ function Libros() {
       <div className="libros-container">
         <h1>Biblioteca Educamarket</h1>
 
-        <input
-          type="text"
-          placeholder="Buscar libros..."
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-          className="search-input"
-        />
+        <div
+          style={{
+            display: "flex",
+            gap: "12px",
+            alignItems: "center",
+            flexWrap: "wrap",
+          }}
+        >
+          <input
+            type="text"
+            placeholder="Buscar libros..."
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            className="search-input"
+          />
+          <button
+            onClick={() => (window.location.href = "/carrito")}
+            style={{
+              backgroundColor: "#6ec1a5",
+              color: "white",
+              border: "none",
+              padding: "12px 20px",
+              borderRadius: "8px",
+              cursor: "pointer",
+              fontWeight: "bold",
+              whiteSpace: "nowrap",
+            }}
+          >
+            🛒 Ver carrito ({cart.length})
+          </button>
+        </div>
 
         {selectedBook && (
           <div className="book-modal">

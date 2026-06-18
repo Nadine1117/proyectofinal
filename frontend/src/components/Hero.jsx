@@ -1,11 +1,19 @@
 import banner from "../assets/banner.jpg";
+import background from "../assets/background.png";
 import InfoCarousel from "./InfoCarousel";
 
 function Hero() {
   return (
     <>
       <div
-        style={{ width: "100%", backgroundColor: "#123B73", padding: "20px 0" }}
+        style={{
+          width: "100%",
+          padding: "20px 0",
+          backgroundImage: `url(${background})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+        }}
       >
         <img
           src={banner}
@@ -48,7 +56,7 @@ function Hero() {
             Explorar Libros
           </button>
           <button
-            className="secondary-btn"
+            className="primary-btn"
             onClick={() => (window.location.href = "/libros")}
           >
             Ver Cursos
