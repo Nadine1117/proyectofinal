@@ -1,4 +1,5 @@
 import { useCart } from "../context/CartContext";
+import Navbar from "../components/Navbar";
 
 function Cart() {
   const { cart, removeFromCart, clearCart, getMembershipPrice } = useCart();
@@ -12,6 +13,8 @@ function Cart() {
 
   return (
     <div style={{ minHeight: "100vh", backgroundColor: "#f5efe6" }}>
+      <Navbar />
+
       <div
         style={{
           backgroundColor: "#1f3c5a",
@@ -22,23 +25,48 @@ function Cart() {
           alignItems: "center",
         }}
       >
-        <span style={{ fontSize: "24px", fontWeight: "bold", color: "#6ec1a5" }}>🛒 Mi carrito</span>
+        <span
+          style={{ fontSize: "24px", fontWeight: "bold", color: "#6ec1a5" }}
+        >
+          🛒 Mi carrito
+        </span>
         <button
           onClick={() => (window.location.href = "/libros")}
-          style={{ backgroundColor: "transparent", color: "white", border: "2px solid white", padding: "8px 16px", borderRadius: "8px", cursor: "pointer" }}
+          style={{
+            backgroundColor: "transparent",
+            color: "white",
+            border: "2px solid white",
+            padding: "8px 16px",
+            borderRadius: "8px",
+            cursor: "pointer",
+          }}
         >
           Volver al catálogo
         </button>
       </div>
 
-      <div style={{ maxWidth: "700px", margin: "40px auto", padding: "0 20px" }}>
+      <div
+        style={{ maxWidth: "700px", margin: "40px auto", padding: "0 20px" }}
+      >
         {cart.length === 0 ? (
-          <div style={{ backgroundColor: "white", borderRadius: "12px", padding: "40px", textAlign: "center", boxShadow: "0 2px 8px rgba(0,0,0,0.08)" }}>
-            <p style={{ color: "#666", fontSize: "16px" }}>Tu carrito está vacío.</p>
+          <div
+            style={{
+              backgroundColor: "white",
+              borderRadius: "12px",
+              padding: "40px",
+              textAlign: "center",
+              boxShadow: "0 2px 8px rgba(0,0,0,0.08)",
+            }}
+          >
+            <p style={{ color: "#666", fontSize: "16px" }}>
+              Tu carrito está vacío.
+            </p>
           </div>
         ) : (
           <>
-            <h2 style={{ color: "#1f3c5a", marginBottom: "20px" }}>Libros agregados</h2>
+            <h2 style={{ color: "#1f3c5a", marginBottom: "20px" }}>
+              Libros agregados
+            </h2>
             {cart.map((item) => (
               <div
                 key={item.id}
@@ -54,12 +82,29 @@ function Cart() {
                 }}
               >
                 <div>
-                  <h3 style={{ color: "#1f3c5a", fontSize: "16px", marginBottom: "4px" }}>{item.titulo}</h3>
-                  <p style={{ color: "#888", fontSize: "13px" }}>{item.categoria || "General"}</p>
+                  <h3
+                    style={{
+                      color: "#1f3c5a",
+                      fontSize: "16px",
+                      marginBottom: "4px",
+                    }}
+                  >
+                    {item.titulo}
+                  </h3>
+                  <p style={{ color: "#888", fontSize: "13px" }}>
+                    {item.categoria || "General"}
+                  </p>
                 </div>
                 <button
                   onClick={() => removeFromCart(item.id)}
-                  style={{ backgroundColor: "#e74c3c", color: "white", border: "none", padding: "8px 14px", borderRadius: "6px", cursor: "pointer" }}
+                  style={{
+                    backgroundColor: "#e74c3c",
+                    color: "white",
+                    border: "none",
+                    padding: "8px 14px",
+                    borderRadius: "6px",
+                    cursor: "pointer",
+                  }}
                 >
                   Quitar
                 </button>
@@ -77,12 +122,23 @@ function Cart() {
             boxShadow: "0 2px 8px rgba(0,0,0,0.08)",
           }}
         >
-          <h2 style={{ color: "#1f3c5a", marginBottom: "16px" }}>Membresía Educamarket</h2>
+          <h2 style={{ color: "#1f3c5a", marginBottom: "16px" }}>
+            Membresía Educamarket
+          </h2>
           <p style={{ color: "#555", marginBottom: "10px" }}>
             Acceso ilimitado a libros y cursos.
           </p>
-          <p style={{ fontSize: "22px", fontWeight: "bold", color: "#1f3c5a", marginBottom: "20px" }}>
-            {membership === 0 ? "Gratis (institución educativa pública)" : `$${membership.toFixed(2)} USD`}
+          <p
+            style={{
+              fontSize: "22px",
+              fontWeight: "bold",
+              color: "#1f3c5a",
+              marginBottom: "20px",
+            }}
+          >
+            {membership === 0
+              ? "Gratis (institución educativa pública)"
+              : `$${membership.toFixed(2)} USD`}
           </p>
           <button
             onClick={handleCheckout}
@@ -98,7 +154,9 @@ function Cart() {
               cursor: "pointer",
             }}
           >
-            {membership === 0 ? "Confirmar acceso gratuito" : "Pagar y confirmar membresía"}
+            {membership === 0
+              ? "Confirmar acceso gratuito"
+              : "Pagar y confirmar membresía"}
           </button>
         </div>
       </div>

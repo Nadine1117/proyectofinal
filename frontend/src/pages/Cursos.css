@@ -1,0 +1,91 @@
+.cursos-container {
+  padding: 40px;
+  text-align: center;
+}
+
+.cursos-container h1 {
+  color: #1f3c5a;
+  margin-bottom: 25px;
+}
+
+.buscador {
+  width: 60%;
+  max-width: 500px;
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  margin-bottom: 30px;
+}
+
+.grid-cursos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 24px;
+}
+
+.curso-card {
+  background: #f5efe6;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.curso-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.curso-card h3 {
+  color: #1f3c5a;
+  margin-top: 15px;
+}
+
+.curso-card p {
+  color: #666;
+}
+
+.ver-mas-btn {
+  margin: 15px;
+  padding: 10px 20px;
+  border: none;
+  background: #1f3c5a;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal {
+  background: white;
+  width: 90%;
+  max-width: 500px;
+  padding: 25px;
+  border-radius: 15px;
+  text-align: center;
+}
+
+.modal img {
+  width: 100%;
+  border-radius: 10px;
+  margin-bottom: 15px;
+}
+
+.modal button {
+  margin-top: 15px;
+  padding: 10px 20px;
+  border: none;
+  background: #1f3c5a;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+}
