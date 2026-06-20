@@ -1,93 +1,165 @@
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 
 function BooksSection() {
   const [books, setBooks] = useState([]);
+  const [startIndex, setStartIndex] = useState(0);
 
   useEffect(() => {
-    fetch("https://openlibrary.org/search.json?q=educacion")
-      .then((response) => response.json())
-      .then((data) => {
-        setBooks(data.docs.slice(0, 6));
+    const temas = [
+      "education",
+      "mathematics",
+      "programming",
+      "history",
+      "science",
+      "languages",
+      "technology",
+      "marketing",
+      "business",
+      "psychology",
+      "art",
+      "literature",
+    ];
+
+    Promise.all(
+      temas.map((tema) =>
+        fetch(`https://openlibrary.org/search.json?q=${tema}`)
+          .then((res) => res.json())
+          .catch(() => ({ docs: [] })),
+      ),
+    )
+      .then((results) => {
+        const allBooks = results.flatMap((r) => r.docs);
+
+        const booksWithCover = allBooks.filter((book) => book.cover_i);
+
+        const uniqueBooks = booksWithCover.filter(
+          (book, index, self) =>
+            index === self.findIndex((b) => b.key === book.key),
+        );
+
+        const shuffled = [...uniqueBooks].sort(() => Math.random() - 0.5);
+
+        setBooks(shuffled.slice(0, 60));
       })
       .catch((error) => console.error(error));
   }, []);
 
+  useEffect(() => {
+    if (books.length === 0) return;
+
+    const interval = setInterval(() => {
+      setStartIndex((prev) => (prev + 6) % books.length);
+    }, 5000);
+
+    return () => clearInterval(interval);
+  }, [books]);
+
+  const visibleBooks =
+    books.length > 0
+      ? Array.from(
+          { length: 6 },
+          (_, i) => books[(startIndex + i) % books.length],
+        )
+      : [];
+
   return (
     <section
       id="libros"
-      style={{ padding: "60px 40px", backgroundColor: "#f5efe6" }}
+      style={{
+        padding: "60px 30px",
+        backgroundColor: "#F5F8FC",
+      }}
     >
       <h2
         style={{
-          color: "#23395d",
-          marginBottom: "30px",
-          fontSize: "28px",
+          textAlign: "center",
+          color: "#0B4F8A",
+          fontSize: "34px",
+          fontWeight: "700",
+          marginBottom: "10px",
         }}
       >
         📚 Libros recomendados
       </h2>
 
+      <p
+        style={{
+          textAlign: "center",
+          color: "#5B6B7A",
+          marginBottom: "35px",
+        }}
+      >
+        Descubrí nuevos recursos para aprender y crecer.
+      </p>
+
       <div
         style={{
           display: "grid",
-          gridTemplateColumns: "repeat(3, 1fr)",
-          gap: "20px",
+          gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))",
+          gap: "15px",
         }}
       >
-        {books.map((book, i) => (
+        {visibleBooks.map((book, i) => (
           <div
             key={i}
             style={{
-              backgroundColor: "white",
-              borderRadius: "12px",
-              padding: "24px",
-              boxShadow: "0 2px 8px rgba(0,0,0,0.08)",
+              background: "#FFFFFF",
+              borderRadius: "16px",
+              overflow: "hidden",
+              border: "8px solid #0B4F8A",
+              boxShadow: "0 10px 25px rgba(11,79,138,0.18)",
+              transition: "all 0.3s ease",
+              cursor: "pointer",
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.transform = "translateY(-6px)";
+              e.currentTarget.style.boxShadow =
+                "0 15px 35px rgba(11,79,138,0.30)";
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.transform = "translateY(0)";
+              e.currentTarget.style.boxShadow =
+                "0 10px 25px rgba(11,79,138,0.18)";
             }}
           >
-            {book.cover_i ? (
-              <img
-                src={`https://covers.openlibrary.org/b/id/${book.cover_i}-M.jpg`}
-                alt={book.title}
+            <img
+              src={
+                book.cover_i
+                  ? `https://covers.openlibrary.org/b/id/${book.cover_i}-M.jpg`
+                  : "https://via.placeholder.com/200x300?text=Libro"
+              }
+              alt={book.title}
+              style={{
+                width: "100%",
+                height: "200px",
+                objectFit: "cover",
+              }}
+            />
+
+            <div style={{ padding: "12px" }}>
+              <h3
                 style={{
-                  width: "100%",
-                  height: "250px",
-                  objectFit: "cover",
-                  borderRadius: "8px",
-                  marginBottom: "12px",
-                }}
-              />
-            ) : (
-              <div
-                style={{
-                  height: "250px",
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  fontSize: "60px",
+                  color: "#0B4F8A",
+                  fontSize: "15px",
+                  fontWeight: "700",
+                  marginBottom: "8px",
+                  lineHeight: "1.3",
                 }}
               >
-                📖
-              </div>
-            )}
+                {book.title}
+              </h3>
 
-            <h3
-              style={{
-                color: "#1f3c5a",
-                marginBottom: "6px",
-              }}
-            >
-              {book.title}
-            </h3>
-
-            <p
-              style={{
-                color: "#6ec1a5",
-                fontWeight: "bold",
-                marginBottom: "8px",
-              }}
-            >
-              {book.author_name ? book.author_name[0] : "Autor desconocido"}
-            </p>
+              <p
+                style={{
+                  color: "#8BC34A",
+                  fontSize: "13px",
+                  fontWeight: "600",
+                  margin: 0,
+                }}
+              >
+                {book.author_name ? book.author_name[0] : "Autor desconocido"}
+              </p>
+            </div>
           </div>
         ))}
       </div>
