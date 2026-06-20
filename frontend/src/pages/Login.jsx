@@ -23,7 +23,7 @@ function Login() {
       localStorage.setItem("token", data.token);
       setLoading(true);
       setTimeout(() => {
-        window.location.href = "/libros";
+        window.location.href = "/";
       }, 2000);
     } catch (error) {
       console.error(error);
