@@ -128,21 +128,24 @@ function CoursesSection() {
           <div
             key={i}
             style={{
-              backgroundColor: "#f5efe6",
-              borderRadius: "12px",
-              padding: "24px",
-              boxShadow: "0 2px 8px rgba(0,0,0,0.08)",
+              background: "#FFFFFF",
+              borderRadius: "18px",
+              overflow: "hidden",
+              border: "12px solid #0B4F8A",
+              boxShadow: "0 12px 30px rgba(11,79,138,0.25)",
+              transition: "all 0.3s ease",
+              cursor: "pointer",
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.transform = "translateY(-8px)";
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.transform = "translateY(0)";
             }}
           >
-            <div style={{ fontSize: "40px", marginBottom: "12px" }}>
-              {curso.emoji}
-            </div>
-            <h3 style={{ color: "#1f3c5a", marginBottom: "8px" }}>
-              {curso.titulo}
-            </h3>
-            <p style={{ color: "#666", fontSize: "14px" }}>{curso.desc}</p>
-            <button
-              onClick={() => (window.location.href = "/cursos")}
+            <img
+              src={course.image}
+              alt={course.title}
               style={{
                 width: "100%",
                 height: "220px",
