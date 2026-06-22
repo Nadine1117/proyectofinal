@@ -48,6 +48,7 @@ function CoursesSection() {
             </h3>
             <p style={{ color: "#666", fontSize: "14px" }}>{curso.desc}</p>
             <button
+              onClick={() => (window.location.href = "/cursos")}
               style={{
                 marginTop: "16px",
                 backgroundColor: "#6ec1a5",
