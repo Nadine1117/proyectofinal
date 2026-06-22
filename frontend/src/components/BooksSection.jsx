@@ -106,8 +106,8 @@ function BooksSection() {
               background: "#FFFFFF",
               borderRadius: "16px",
               overflow: "hidden",
-              border: "8px solid #0B4F8A",
-              boxShadow: "0 10px 25px rgba(11,79,138,0.18)",
+              border: "12px solid #0B4F8A",
+              boxShadow: "0 12px 30px rgba(11,79,138,0.25)",
               transition: "all 0.3s ease",
               cursor: "pointer",
             }}
