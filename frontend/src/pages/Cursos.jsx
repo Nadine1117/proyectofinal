@@ -280,6 +280,7 @@ const cursos = [
 function Cursos() {
   const [busqueda, setBusqueda] = useState("");
   const [info, setInfo] = useState(null);
+  const [mensaje, setMensaje] = useState("");
 
   const cursosFiltrados = cursos.filter((curso) =>
     curso.titulo.toLowerCase().includes(busqueda.toLowerCase()),
@@ -324,7 +325,30 @@ function Cursos() {
 
               <p>{info.descripcion}</p>
 
-              <button onClick={() => setInfo(null)}>Cerrar</button>
+              <div className="modal-buttons">
+                <button
+                  className="inscribirse-btn"
+                  onClick={() =>
+                    setMensaje(
+                      "✅ Inscripción realizada con éxito. Los pasos para iniciar el curso serán enviados a tu correo electrónico.",
+                    )
+                  }
+                >
+                  Inscribirse
+                </button>
+
+                <button
+                  className="cerrar-btn"
+                  onClick={() => {
+                    setInfo(null);
+                    setMensaje("");
+                  }}
+                >
+                  Cerrar
+                </button>
+              </div>
+
+              {mensaje && <div className="mensaje-inscripcion">{mensaje}</div>}
             </div>
           </div>
         )}
