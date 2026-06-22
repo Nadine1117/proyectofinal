@@ -1,56 +1,190 @@
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
+
 function About() {
   return (
-    <div style={{ minHeight: "100vh", backgroundColor: "#f5efe6" }}>
-      <div style={{ backgroundColor: "#1f3c5a", color: "white", padding: "18px 40px" }}>
-        <span style={{ fontSize: "24px", fontWeight: "bold", color: "#6ec1a5" }}>📚 Educamarket</span>
-      </div>
-      <div style={{ maxWidth: "800px", margin: "40px auto", padding: "0 20px 60px" }}>
-        <div style={{ backgroundColor: "white", borderRadius: "12px", padding: "40px", boxShadow: "0 2px 8px rgba(0,0,0,0.08)" }}>
-          <h1 style={{ color: "#1f3c5a", marginBottom: "20px" }}>Sobre Nosotros</h1>
+    <div style={{ minHeight: "100vh", backgroundColor: "#F7FAFC" }}>
+      <style>{`
+        @keyframes fadeInUp {
+          from { opacity: 0; transform: translateY(20px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
 
-          <h2 style={{ color: "#1f3c5a", marginTop: "24px", marginBottom: "8px" }}>¿Qué es Educamarket?</h2>
-          <p style={{ color: "#555", lineHeight: "1.6", marginBottom: "12px" }}>
-            Educamarket es una plataforma diseñada para acercar el conocimiento a más personas mediante el acceso a libros, cursos y recursos educativos en un solo lugar.
-          </p>
-          <p style={{ color: "#555", lineHeight: "1.6" }}>
-            Nuestro objetivo es facilitar el aprendizaje y brindar oportunidades de crecimiento académico y profesional a estudiantes, docentes y cualquier persona interesada en seguir formándose.
-          </p>
+        .flip-card {
+          perspective: 1000px;
+          height: 200px;
+        }
+        .flip-card-inner {
+          position: relative;
+          width: 100%;
+          height: 100%;
+          transition: transform 0.6s;
+          transform-style: preserve-3d;
+        }
+        .flip-card:hover .flip-card-inner {
+          transform: rotateY(180deg);
+        }
+        .flip-card-front, .flip-card-back {
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          backface-visibility: hidden;
+          border-radius: 12px;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          padding: 20px;
+          box-sizing: border-box;
+          text-align: center;
+        }
+        .flip-card-front {
+          background-color: #163D6B;
+          color: white;
+        }
+        .flip-card-back {
+          background-color: #6ec1a5;
+          color: white;
+          transform: rotateY(180deg);
+        }
+      `}</style>
 
-          <h2 style={{ color: "#1f3c5a", marginTop: "24px", marginBottom: "8px" }}>Nuestra Misión</h2>
-          <p style={{ color: "#555", lineHeight: "1.6" }}>
-            Hacer que el acceso al conocimiento sea más simple, accesible y justo para todos.
-          </p>
+      <Navbar />
+      <div
+        style={{
+          maxWidth: "800px",
+          margin: "50px auto",
+          padding: "0 20px 60px",
+        }}
+      >
+        <div
+          style={{
+            backgroundColor: "white",
+            borderRadius: "12px",
+            padding: "40px",
+            boxShadow: "0 2px 8px rgba(0,0,0,0.08)",
+            animation: "fadeInUp 0.8s ease-out",
+          }}
+        >
+          <h1 style={{ color: "#163D6B", marginBottom: "20px" }}>
+            Sobre Nosotros
+          </h1>
 
-          <h2 style={{ color: "#1f3c5a", marginTop: "24px", marginBottom: "8px" }}>Nuestra Visión</h2>
-          <p style={{ color: "#555", lineHeight: "1.6" }}>
-            Crear una comunidad donde aprender sea una oportunidad al alcance de cualquier persona.
-          </p>
-
-          <h2 style={{ color: "#1f3c5a", marginTop: "24px", marginBottom: "8px" }}>¿Por qué Educamarket?</h2>
-          <p style={{ color: "#555", lineHeight: "1.6", marginBottom: "12px" }}>
-            Creemos que la educación es una de las herramientas más poderosas para transformar vidas. Por eso impulsamos un modelo que beneficia especialmente a quienes forman parte de instituciones educativas públicas, permitiéndoles acceder a la plataforma de forma gratuita.
-          </p>
-          <p style={{ color: "#555", lineHeight: "1.6" }}>
-            Al mismo tiempo, las membresías de otros usuarios nos ayudan a mantener, mejorar y ampliar continuamente los contenidos disponibles.
-          </p>
-
-          <h2 style={{ color: "#1f3c5a", marginTop: "24px", marginBottom: "8px" }}>Nuestros Valores</h2>
-          <ul style={{ color: "#555", lineHeight: "1.8", paddingLeft: "24px", listStyle: "none" }}>
-            <li>📚 Educación</li>
-            <li>🌎 Inclusión</li>
-            <li>💡 Innovación</li>
-            <li>🤝 Comunidad</li>
-            <li>🔍 Transparencia</li>
-          </ul>
-
-          <button
-            onClick={() => (window.location.href = "/")}
-            style={{ marginTop: "30px", backgroundColor: "#6ec1a5", color: "white", border: "none", padding: "12px 24px", borderRadius: "8px", cursor: "pointer", fontWeight: "bold" }}
+          <p
+            style={{
+              color: "#2E3A4D",
+              lineHeight: "1.6",
+              marginBottom: "12px",
+            }}
           >
-            Volver al inicio
-          </button>
+            Somos Nadine y Paulina, dos jóvenes que conocemos de primera mano
+            los desafíos que muchas personas enfrentan para acceder y completar
+            su educación.
+          </p>
+          <p
+            style={{
+              color: "#2E3A4D",
+              lineHeight: "1.6",
+              marginBottom: "12px",
+            }}
+          >
+            Luego de vivir nuestra experiencia en Ánima Finest y tener la
+            oportunidad de finalizar el bachillerato mediante una modalidad
+            online orientada a la tecnología, comprendimos el impacto que puede
+            tener una educación flexible, accesible y adaptada a las necesidades
+            de cada persona.
+          </p>
+          <p
+            style={{
+              color: "#2E3A4D",
+              lineHeight: "1.6",
+              marginBottom: "12px",
+            }}
+          >
+            Sabemos que no todos cuentan con las mismas oportunidades. Muchas
+            veces, factores económicos, laborales o personales dificultan
+            continuar estudiando y acceder a recursos educativos de calidad. Por
+            eso decidimos crear EducaMarket, una plataforma pensada para acercar
+            el conocimiento a más personas y ayudar a reducir la brecha
+            educativa.
+          </p>
+          <p
+            style={{
+              color: "#2E3A4D",
+              lineHeight: "1.6",
+              marginBottom: "12px",
+            }}
+          >
+            Nuestra misión es que el acceso a cursos, libros y herramientas de
+            aprendizaje no sea un privilegio, sino una oportunidad al alcance de
+            todos. Creemos que la educación es una de las herramientas más
+            poderosas para transformar vidas, generar nuevas oportunidades y
+            construir una sociedad más justa e inclusiva.
+          </p>
+          <p style={{ color: "#2E3A4D", lineHeight: "1.6" }}>
+            Hoy trabajamos para que cada persona, sin importar su contexto,
+            pueda aprender, crecer y alcanzar sus metas.
+          </p>
+
+          <h2
+            style={{
+              color: "#163D6B",
+              marginTop: "32px",
+              marginBottom: "16px",
+            }}
+          >
+            Conocé al equipo
+          </h2>
+          <p style={{ color: "#888", fontSize: "13px", marginBottom: "16px" }}>
+            Pasá el mouse por arriba 👇
+          </p>
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(2, 1fr)",
+              gap: "20px",
+              marginBottom: "12px",
+            }}
+          >
+            <div className="flip-card">
+              <div className="flip-card-inner">
+                <div className="flip-card-front">
+                  <div style={{ fontSize: "40px", marginBottom: "8px" }}>
+                    👩‍💻
+                  </div>
+                  <h3 style={{ margin: 0 }}>Nadine</h3>
+                  <p style={{ fontSize: "13px", opacity: 0.8 }}>Cofundadora</p>
+                </div>
+                <div className="flip-card-back">
+                  <p style={{ fontSize: "14px", lineHeight: "1.5" }}>
+                    "Si la educación me cambió la vida a mí, quiero que pueda
+                    cambiársela a otros también."
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="flip-card">
+              <div className="flip-card-inner">
+                <div className="flip-card-front">
+                  <div style={{ fontSize: "40px", marginBottom: "8px" }}>
+                    👩‍🎓
+                  </div>
+                  <h3 style={{ margin: 0 }}>Paulina</h3>
+                  <p style={{ fontSize: "13px", opacity: 0.8 }}>Cofundadora</p>
+                </div>
+                <div className="flip-card-back">
+                  <p style={{ fontSize: "14px", lineHeight: "1.5" }}>
+                    "Aprender no debería depender de cuánto podés pagar, sino de
+                    cuánto querés crecer."
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 }
