@@ -6,9 +6,7 @@ function Cart() {
   const membership = getMembershipPrice();
 
   const handleCheckout = () => {
-    alert("¡Gracias por tu compra! Tu membresía fue activada.");
-    clearCart();
-    window.location.href = "/libros";
+    window.location.href = "/pago";
   };
 
   return (
