@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "./Cursos.css";
+import Navbar from "../components/Navbar";
 
 const cursos = [
   {
@@ -285,47 +286,50 @@ function Cursos() {
   );
 
   return (
-    <div className="cursos-container">
-      <h1>🎓 Cursos Disponibles</h1>
+    <>
+      <Navbar />
+      <div className="cursos-container">
+        <h1>🎓 Cursos Disponibles</h1>
 
-      <input
-        type="text"
-        placeholder="Buscar cursos..."
-        value={busqueda}
-        onChange={(e) => setBusqueda(e.target.value)}
-        className="buscador"
-      />
+        <input
+          type="text"
+          placeholder="Buscar cursos..."
+          value={busqueda}
+          onChange={(e) => setBusqueda(e.target.value)}
+          className="buscador"
+        />
 
-      <div className="grid-cursos">
-        {cursosFiltrados.map((curso) => (
-          <div key={curso.id} className="curso-card">
-            <img src={curso.imagen} alt={curso.titulo} />
+        <div className="grid-cursos">
+          {cursosFiltrados.map((curso) => (
+            <div key={curso.id} className="curso-card">
+              <img src={curso.imagen} alt={curso.titulo} />
 
-            <h3>{curso.titulo}</h3>
+              <h3>{curso.titulo}</h3>
 
-            <p>{curso.categoria}</p>
+              <p>{curso.categoria}</p>
 
-            <button onClick={() => setInfo(curso)} className="ver-mas-btn">
-              Ver más
-            </button>
-          </div>
-        ))}
-      </div>
-
-      {info && (
-        <div className="modal-overlay">
-          <div className="modal">
-            <img src={info.imagen} alt={info.titulo} />
-
-            <h2>{info.titulo}</h2>
-
-            <p>{info.descripcion}</p>
-
-            <button onClick={() => setInfo(null)}>Cerrar</button>
-          </div>
+              <button onClick={() => setInfo(curso)} className="ver-mas-btn">
+                Ver más
+              </button>
+            </div>
+          ))}
         </div>
-      )}
-    </div>
+
+        {info && (
+          <div className="modal-overlay">
+            <div className="modal">
+              <img src={info.imagen} alt={info.titulo} />
+
+              <h2>{info.titulo}</h2>
+
+              <p>{info.descripcion}</p>
+
+              <button onClick={() => setInfo(null)}>Cerrar</button>
+            </div>
+          </div>
+        )}
+      </div>
+    </>
   );
 }
 
