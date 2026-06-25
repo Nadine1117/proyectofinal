@@ -13,8 +13,8 @@ import Pricing from "./pages/Pricing";
 import About from "./pages/About";
 import Faq from "./pages/Faq";
 import Libros from "./pages/Libros";
-import "./App.css";
 import Cursos from "./pages/Cursos";
+import "./App.css";
 
 function App() {
   const token = localStorage.getItem("token");
@@ -26,34 +26,42 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />
+
           <Route
             path="/login"
             element={token ? <Navigate to="/libros" /> : <Login />}
           />
+
           <Route
             path="/register"
             element={token ? <Navigate to="/libros" /> : <Register />}
           />
+
           <Route
             path="/admin/login"
             element={token ? <Navigate to="/libros" /> : <AdminLogin />}
           />
+
           <Route
             path="/libros"
             element={token ? <Libros /> : <Navigate to="/login" />}
           />
+
           <Route
             path="/admin/productos"
             element={isAdmin ? <Dashboard /> : <Navigate to="/login" />}
           />
+
           <Route
             path="/carrito"
             element={token ? <Cart /> : <Navigate to="/login" />}
           />
+
           <Route
             path="/pago"
             element={token ? <Pago /> : <Navigate to="/login" />}
           />
+
           <Route path="/terminos" element={<Terms />} />
           <Route path="/explorar" element={<Explore />} />
           <Route path="/precios" element={<Pricing />} />
