@@ -173,21 +173,6 @@ function CoursesSection() {
               >
                 {course.description}
               </p>
-
-              <button
-                style={{
-                  width: "100%",
-                  backgroundColor: "#8BC34A",
-                  color: "white",
-                  border: "none",
-                  padding: "10px",
-                  borderRadius: "8px",
-                  cursor: "pointer",
-                  fontWeight: "600",
-                }}
-              >
-                Ver curso
-              </button>
             </div>
           </div>
         ))}
