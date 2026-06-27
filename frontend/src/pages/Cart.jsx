@@ -1,5 +1,6 @@
 import { useCart } from "../context/CartContext";
 import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 
 function Cart() {
   const { cart, removeFromCart, clearCart, getMembershipPrice } = useCart();
@@ -158,6 +159,7 @@ function Cart() {
           </button>
         </div>
       </div>
+      <Footer />
     </div>
   );
 }

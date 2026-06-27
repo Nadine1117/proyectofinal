@@ -5,33 +5,214 @@ function Footer() {
   return (
     <footer
       style={{
-        backgroundColor: "#1f3c5a",
+        backgroundColor: "#163D6B",
         color: "white",
-        padding: "30px 40px",
-        textAlign: "center",
+        padding: "50px 40px 20px",
         marginTop: "40px",
       }}
     >
-      <p style={{ marginBottom: "10px", fontWeight: "bold", color: "#6ec1a5" }}>
-        📚 Educamarket
-      </p>
-      <p style={{ fontSize: "14px", marginBottom: "10px" }}>
-        Educación accesible para todos.
-      </p>
-      <a
-        href="/terminos"
+      <div
         style={{
-          color: "#6ec1a5",
-          fontSize: "14px",
-          textDecoration: "underline",
-          cursor: bookCursor,
+          maxWidth: "1100px",
+          margin: "0 auto",
+          display: "grid",
+          gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
+          gap: "40px",
+          marginBottom: "40px",
         }}
       >
-        Términos y condiciones
-      </a>
-      <p style={{ fontSize: "12px", color: "#aaa", marginTop: "15px" }}>
-        © 2026 Educamarket. Todos los derechos reservados.
-      </p>
+        <div>
+          <img
+            src="/src/assets/logo-educamarket.png"
+            alt="Educamarket"
+            style={{ height: "60px", marginBottom: "10px" }}
+          />
+          <p style={{ color: "#aaa", fontSize: "14px", lineHeight: "1.7" }}>
+            Plataforma educativa para acercar el conocimiento a todas las
+            personas, con acceso gratuito para instituciones públicas.
+          </p>
+        </div>
+
+        <div>
+          <p
+            style={{
+              fontWeight: "bold",
+              color: "#7AD8A4",
+              fontSize: "15px",
+              marginBottom: "12px",
+            }}
+          >
+            Navegación
+          </p>
+          <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
+            <a
+              href="/"
+              style={{
+                color: "#aaa",
+                fontSize: "14px",
+                textDecoration: "none",
+                cursor: bookCursor,
+              }}
+            >
+              Inicio
+            </a>
+            <a
+              href="/explorar"
+              style={{
+                color: "#aaa",
+                fontSize: "14px",
+                textDecoration: "none",
+                cursor: bookCursor,
+              }}
+            >
+              Explorar
+            </a>
+            <a
+              href="/precios"
+              style={{
+                color: "#aaa",
+                fontSize: "14px",
+                textDecoration: "none",
+                cursor: bookCursor,
+              }}
+            >
+              Precios
+            </a>
+            <a
+              href="/sobre-nosotros"
+              style={{
+                color: "#aaa",
+                fontSize: "14px",
+                textDecoration: "none",
+                cursor: bookCursor,
+              }}
+            >
+              Sobre Nosotros
+            </a>
+            <a
+              href="/preguntas-frecuentes"
+              style={{
+                color: "#aaa",
+                fontSize: "14px",
+                textDecoration: "none",
+                cursor: bookCursor,
+              }}
+            >
+              Preguntas Frecuentes
+            </a>
+          </div>
+        </div>
+
+        <div>
+          <p
+            style={{
+              fontWeight: "bold",
+              color: "#7AD8A4",
+              fontSize: "15px",
+              marginBottom: "12px",
+            }}
+          >
+            Legal
+          </p>
+          <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
+            <a
+              href="/terminos"
+              style={{
+                color: "#aaa",
+                fontSize: "14px",
+                textDecoration: "none",
+                cursor: bookCursor,
+              }}
+            >
+              Términos y condiciones
+            </a>
+            <a
+              href="/admin/login"
+              style={{
+                color: "#7AD8A4",
+                fontSize: "14px",
+                textDecoration: "none",
+                cursor: bookCursor,
+              }}
+            >
+              Acceso administradores
+            </a>
+          </div>
+        </div>
+
+        <div>
+          <p
+            style={{
+              fontWeight: "bold",
+              color: "#7AD8A4",
+              fontSize: "15px",
+              marginBottom: "12px",
+            }}
+          >
+            Contacto
+          </p>
+          <p style={{ color: "#aaa", fontSize: "14px", marginBottom: "8px" }}>
+            📧 contacto@educamarket.com
+          </p>
+          <p style={{ color: "#aaa", fontSize: "14px", marginBottom: "16px" }}>
+            🌍 Uruguay
+          </p>
+          <p
+            style={{
+              fontWeight: "bold",
+              color: "#7AD8A4",
+              fontSize: "15px",
+              marginBottom: "10px",
+            }}
+          >
+            Redes sociales
+          </p>
+          <div style={{ display: "flex", gap: "12px" }}>
+            <a
+              href="#"
+              style={{
+                color: "#27BFD2",
+                fontSize: "20px",
+                textDecoration: "none",
+              }}
+            >
+              📘
+            </a>
+            <a
+              href="#"
+              style={{
+                color: "#27BFD2",
+                fontSize: "20px",
+                textDecoration: "none",
+              }}
+            >
+              📸
+            </a>
+            <a
+              href="#"
+              style={{
+                color: "#27BFD2",
+                fontSize: "20px",
+                textDecoration: "none",
+              }}
+            >
+              🐦
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div
+        style={{
+          borderTop: "1px solid #1D4C87",
+          paddingTop: "20px",
+          textAlign: "center",
+        }}
+      >
+        <p style={{ fontSize: "12px", color: "#667085" }}>
+          © 2026 Educamarket. Todos los derechos reservados.
+        </p>
+      </div>
     </footer>
   );
 }

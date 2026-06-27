@@ -1,6 +1,8 @@
+cat > (frontend / src / pages / Cursos.jsx) << "EOF";
 import { useState } from "react";
 import "./Cursos.css";
 import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 
 const cursos = [
   {
@@ -34,7 +36,6 @@ const cursos = [
     imagen: "https://picsum.photos/300/200?4",
     descripcion: "Tablas dinámicas, funciones avanzadas y análisis de datos.",
   },
-
   {
     id: 5,
     titulo: "Matemática Básica",
@@ -290,8 +291,7 @@ function Cursos() {
     <>
       <Navbar />
       <div className="cursos-container">
-        <h1>🎓 Cursos Disponibles</h1>
-
+        <h1>Cursos Disponibles</h1>
         <input
           type="text"
           placeholder="Buscar cursos..."
@@ -299,32 +299,24 @@ function Cursos() {
           onChange={(e) => setBusqueda(e.target.value)}
           className="buscador"
         />
-
         <div className="grid-cursos">
           {cursosFiltrados.map((curso) => (
             <div key={curso.id} className="curso-card">
               <img src={curso.imagen} alt={curso.titulo} />
-
               <h3>{curso.titulo}</h3>
-
               <p>{curso.categoria}</p>
-
               <button onClick={() => setInfo(curso)} className="ver-mas-btn">
                 Ver más
               </button>
             </div>
           ))}
         </div>
-
         {info && (
           <div className="modal-overlay">
             <div className="modal">
               <img src={info.imagen} alt={info.titulo} />
-
               <h2>{info.titulo}</h2>
-
               <p>{info.descripcion}</p>
-
               <div className="modal-buttons">
                 <button
                   className="inscribirse-btn"
@@ -336,7 +328,6 @@ function Cursos() {
                 >
                   Inscribirse
                 </button>
-
                 <button
                   className="cerrar-btn"
                   onClick={() => {
@@ -347,14 +338,15 @@ function Cursos() {
                   Cerrar
                 </button>
               </div>
-
               {mensaje && <div className="mensaje-inscripcion">{mensaje}</div>}
             </div>
           </div>
         )}
       </div>
+      <Footer />
     </>
   );
 }
 
 export default Cursos;
+EOF;
