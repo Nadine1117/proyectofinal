@@ -10,9 +10,8 @@ function Navbar() {
 
   const cerrarSesion = () => {
     localStorage.removeItem("token");
-    window.location.href = "/login";
+    window.location.replace("/");
   };
-
   return (
     <nav className="navbar">
       <div
