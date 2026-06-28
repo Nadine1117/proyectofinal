@@ -5,12 +5,13 @@ const bookCursor = `url(${cursorImg}) 0 0, pointer`;
 
 function Navbar() {
   const token = localStorage.getItem("token");
+  const payload = token ? JSON.parse(atob(token.split(".")[1])) : null;
+  const isAdmin = payload?.rol === "admin";
 
   const cerrarSesion = () => {
     localStorage.removeItem("token");
-    window.location.href = "/login";
+    window.location.replace("/");
   };
-
   return (
     <nav className="navbar">
       <div
@@ -57,6 +58,15 @@ function Navbar() {
       <div style={{ display: "flex", gap: "10px" }}>
         {token ? (
           <>
+            {isAdmin && (
+              <button
+                className="login-btn"
+                onClick={() => (window.location.href = "/admin/productos")}
+                style={{ cursor: bookCursor, backgroundColor: "#163D6B" }}
+              >
+                Panel Admin
+              </button>
+            )}
             <button
               className="login-btn"
               onClick={() => (window.location.href = "/libros")}

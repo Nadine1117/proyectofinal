@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Loader from "../components/Loader";
+import logo from "../assets/logo-educamarket.png";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -23,8 +24,8 @@ function Login() {
       localStorage.setItem("token", data.token);
       setLoading(true);
       setTimeout(() => {
-        window.location.href = "/";
-      }, 2000);
+        window.location.href = "/libros";
+      }, 2500);
     } catch (error) {
       console.error(error);
     }
@@ -33,120 +34,28 @@ function Login() {
   if (loading) return <Loader />;
 
   return (
-    <div
-      style={{
-        minHeight: "100vh",
-        backgroundColor: "#f5efe6",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-      }}
-    >
-      <div
-        style={{
-          backgroundColor: "white",
-          borderRadius: "16px",
-          padding: "40px",
-          width: "400px",
-          boxShadow: "0 4px 20px rgba(0,0,0,0.1)",
-        }}
-      >
+    <div style={{ minHeight: "100vh", backgroundColor: "#F7FAFC", display: "flex", alignItems: "center", justifyContent: "center" }}>
+      <div style={{ backgroundColor: "white", borderRadius: "16px", padding: "40px", width: "400px", boxShadow: "0 4px 20px rgba(0,0,0,0.1)" }}>
         <div style={{ textAlign: "center", marginBottom: "30px" }}>
-          <div style={{ fontSize: "48px" }}>📚</div>
-          <h1 style={{ color: "#1f3c5a", fontSize: "28px", marginTop: "10px" }}>
-            Educamarket
-          </h1>
-          <p style={{ color: "#888", marginTop: "8px" }}>
-            Iniciá sesión en tu cuenta
-          </p>
+          <img src={logo} alt="Educamarket" style={{ height: "80px", marginBottom: "10px" }} />
+          <p style={{ color: "#667085", marginTop: "8px" }}>Iniciá sesión en tu cuenta</p>
         </div>
         <form onSubmit={handleSubmit}>
           <div style={{ marginBottom: "16px" }}>
-            <label
-              style={{
-                display: "block",
-                color: "#1f3c5a",
-                fontWeight: "bold",
-                marginBottom: "6px",
-              }}
-            >
-              Email
-            </label>
-            <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-              style={{
-                width: "100%",
-                padding: "12px",
-                border: "1px solid #ddd",
-                borderRadius: "8px",
-                fontSize: "14px",
-              }}
-            />
+            <label style={{ display: "block", color: "#163D6B", fontWeight: "bold", marginBottom: "6px" }}>Email</label>
+            <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required style={{ width: "100%", padding: "12px", border: "1px solid #ddd", borderRadius: "8px", fontSize: "14px" }} />
           </div>
           <div style={{ marginBottom: "24px" }}>
-            <label
-              style={{
-                display: "block",
-                color: "#1f3c5a",
-                fontWeight: "bold",
-                marginBottom: "6px",
-              }}
-            >
-              Contraseña
-            </label>
-            <input
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-              style={{
-                width: "100%",
-                padding: "12px",
-                border: "1px solid #ddd",
-                borderRadius: "8px",
-                fontSize: "14px",
-              }}
-            />
+            <label style={{ display: "block", color: "#163D6B", fontWeight: "bold", marginBottom: "6px" }}>Contraseña</label>
+            <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required style={{ width: "100%", padding: "12px", border: "1px solid #ddd", borderRadius: "8px", fontSize: "14px" }} />
           </div>
-          {error && (
-            <p style={{ color: "#e74c3c", marginBottom: "16px" }}>{error}</p>
-          )}
-          <button
-            type="submit"
-            style={{
-              width: "100%",
-              backgroundColor: "#6ec1a5",
-              color: "white",
-              border: "none",
-              padding: "14px",
-              borderRadius: "8px",
-              fontSize: "16px",
-              cursor: "pointer",
-              fontWeight: "bold",
-            }}
-          >
+          {error && <p style={{ color: "#e74c3c", marginBottom: "16px" }}>{error}</p>}
+          <button type="submit" style={{ width: "100%", backgroundColor: "#58C786", color: "white", border: "none", padding: "14px", borderRadius: "8px", fontSize: "16px", cursor: "pointer", fontWeight: "bold" }}>
             Ingresar
           </button>
-          <p
-            style={{
-              textAlign: "center",
-              marginTop: "16px",
-              color: "#888",
-              fontSize: "14px",
-            }}
-          >
+          <p style={{ textAlign: "center", marginTop: "16px", color: "#667085", fontSize: "14px" }}>
             ¿No tenés cuenta?{" "}
-            <span
-              onClick={() => (window.location.href = "/register")}
-              style={{
-                color: "#6ec1a5",
-                cursor: "pointer",
-                fontWeight: "bold",
-              }}
-            >
+            <span onClick={() => (window.location.href = "/register")} style={{ color: "#27BFD2", cursor: "pointer", fontWeight: "bold" }}>
               Registrate
             </span>
           </p>

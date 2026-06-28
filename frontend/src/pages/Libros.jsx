@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import "./Libros.css";
 import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 import { useCart } from "../context/CartContext";
 
 function Libros() {
@@ -14,17 +15,13 @@ function Libros() {
   const fetchBooks = async () => {
     try {
       setLoading(true);
-
       const response = await fetch(
         `https://openlibrary.org/search.json?q=education&page=${page}`,
       );
-
       const data = await response.json();
-
       const filteredBooks = data.docs.filter(
         (book) => book.cover_i && book.title,
       );
-
       setBooks((prevBooks) => [...prevBooks, ...filteredBooks.slice(0, 20)]);
     } catch (error) {
       console.error("Error al cargar libros:", error);
@@ -46,9 +43,7 @@ function Libros() {
         setPage((prevPage) => prevPage + 1);
       }
     };
-
     window.addEventListener("scroll", handleScroll);
-
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
@@ -61,18 +56,9 @@ function Libros() {
   return (
     <>
       <Navbar />
-
       <div className="libros-container">
         <h1>Biblioteca Educamarket</h1>
-
-        <div
-          style={{
-            display: "flex",
-            gap: "12px",
-            alignItems: "center",
-            flexWrap: "wrap",
-          }}
-        >
+        <div style={{ display: "flex", gap: "12px", alignItems: "center", flexWrap: "wrap" }}>
           <input
             type="text"
             placeholder="Buscar libros..."
@@ -82,52 +68,18 @@ function Libros() {
           />
           <button
             onClick={() => (window.location.href = "/carrito")}
-            style={{
-              backgroundColor: "#6ec1a5",
-              color: "white",
-              border: "none",
-              padding: "12px 20px",
-              borderRadius: "8px",
-              cursor: "pointer",
-              fontWeight: "bold",
-              whiteSpace: "nowrap",
-            }}
+            style={{ backgroundColor: "#6ec1a5", color: "white", border: "none", padding: "12px 20px", borderRadius: "8px", cursor: "pointer", fontWeight: "bold", whiteSpace: "nowrap" }}
           >
-            🛒 Ver carrito ({cart.length})
+            Ver carrito ({cart.length})
           </button>
         </div>
 
         {selectedBook && (
-          <div className="modal-overlay">
-            <div className="book-modal">
-              {selectedBook.cover_i && (
-                <img
-                  src={
-                    "https://covers.openlibrary.org/b/id/${selectedBook.cover_i}-L.jpg"
-                  }
-                  alt={selectedBook.title}
-                  className="modal-book-image"
-                />
-              )}
-              <h2>{selectedBook.title}</h2>
-
-              <p>
-                <strong>Autor:</strong>{" "}
-                {selectedBook.author_name?.[0] || "Desconocido"}
-              </p>
-
-              <p>
-                <strong>Año:</strong>{" "}
-                {selectedBook.first_publish_year || "No disponible"}
-              </p>
-
-              <button
-                className="view-btn"
-                onClick={() => setSelectedBook(null)}
-              >
-                Cerrar
-              </button>
-            </div>
+          <div className="book-modal">
+            <h2>{selectedBook.title}</h2>
+            <p><strong>Autor:</strong> {selectedBook.author_name?.[0] || "Desconocido"}</p>
+            <p><strong>Año:</strong> {selectedBook.first_publish_year || "No disponible"}</p>
+            <button className="view-btn" onClick={() => setSelectedBook(null)}>Cerrar</button>
           </div>
         )}
 
@@ -141,35 +93,15 @@ function Libros() {
                   src={`https://covers.openlibrary.org/b/id/${book.cover_i}-M.jpg`}
                   alt={book.title}
                 />
-
                 <h3>{book.title}</h3>
-
-                <p>
-                  {book.author_name ? book.author_name[0] : "Autor desconocido"}
-                </p>
-
+                <p>{book.author_name ? book.author_name[0] : "Autor desconocido"}</p>
                 <p>Año: {book.first_publish_year || "No disponible"}</p>
-
+                <button className="view-btn" onClick={() => setSelectedBook(book)}>Ver libro</button>
                 <button
                   className="view-btn"
-                  onClick={() => setSelectedBook(book)}
-                >
-                  Ver libro
-                </button>
-                <button
-                  className="view-btn"
-                  onClick={() =>
-                    addToCart({
-                      id: bookId,
-                      titulo: book.title,
-                      categoria: "Libro",
-                    })
-                  }
+                  onClick={() => addToCart({ id: bookId, titulo: book.title, categoria: "Libro" })}
                   disabled={inCart}
-                  style={{
-                    marginTop: "6px",
-                    backgroundColor: inCart ? "#ccc" : "#6ec1a5",
-                  }}
+                  style={{ marginTop: "6px", backgroundColor: inCart ? "#ccc" : "#6ec1a5" }}
                 >
                   {inCart ? "En el carrito" : "Agregar al carrito"}
                 </button>
@@ -177,9 +109,9 @@ function Libros() {
             );
           })}
         </div>
-
         {loading && <p>Cargando más libros...</p>}
       </div>
+      <Footer />
     </>
   );
 }
